@@ -1,0 +1,22 @@
+version: "2"
+
+services:
+  backend:
+    build: ./backend
+    container_name: excel_task_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - db_data:/app/data
+
+  frontend:
+    build: ./frontend
+    container_name: excel_task_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+  
+volumes:
+  db_data:
